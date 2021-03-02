@@ -5,6 +5,8 @@ import java.util.Objects;
 
 public class CallDTO {
 
+    private Long id;
+
     private String caller;
 
     private String calle;
@@ -14,6 +16,14 @@ public class CallDTO {
     private LocalDateTime end;
 
     private TypeCall type;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getCaller() {
         return caller;
@@ -64,7 +74,8 @@ public class CallDTO {
             return false;
         }
         CallDTO callDTO = (CallDTO) o;
-        return Objects.equals(caller, callDTO.caller)
+        return Objects.equals(id, callDTO.id)
+                && Objects.equals(caller, callDTO.caller)
                 && Objects.equals(calle, callDTO.calle)
                 && Objects.equals(start, callDTO.start)
                 && Objects.equals(end, callDTO.end)
@@ -73,13 +84,14 @@ public class CallDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(caller, calle, start, end, type);
+        return Objects.hash(id, caller, calle, start, end, type);
     }
 
     @Override
     public String toString() {
         return "CallDTO{" +
-                "caller='" + caller + '\'' +
+                "id=" + id +
+                ", caller='" + caller + '\'' +
                 ", calle='" + calle + '\'' +
                 ", start=" + start +
                 ", end=" + end +
@@ -90,6 +102,7 @@ public class CallDTO {
     public static CallDTO of(Call call) {
         Period period = call.getPeriod();
         CallDTO dto = new CallDTO();
+        dto.setId(call.getId());
         dto.setCalle(call.getCalle());
         dto.setCaller(call.getCaller());
         dto.setType(call.getType());
