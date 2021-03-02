@@ -39,8 +39,18 @@ class PulseDialingTest {
     }
 
     @Test
-    public void shouldCreatePulseHigherThanFiveMinutes() {
+    public void shouldCreatePulseEqualsFiveMinutes() {
+        Call call = new Call();
+        call.setCalle("123");
+        call.setCalle("321");
+        call.setType(TypeCall.OUTBOUND);
+        call.setPeriod(Period.of(LocalDateTime.now(), LocalDateTime.now().plusMinutes(5)));
 
+        PulseDialing pulseDialing = new PulseDialing(call);
+        BigDecimal pulse = pulseDialing.pulse();
+        BigDecimal expectedValue = BigDecimal.valueOf(0.3D);
+        Assertions.assertEquals(0, pulse.compareTo(expectedValue));
+        Assertions.assertEquals(0, call.getCost().compareTo(expectedValue));
     }
 
 
