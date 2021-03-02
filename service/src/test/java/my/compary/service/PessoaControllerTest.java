@@ -28,101 +28,12 @@ class PessoaControllerTest {
 
     @Test
     public void shouldInsert() {
-        Pessoa pessoa = createPerson();
+        Pessoa pessoa = getPessoa();
+        pessoa.persist();
         Assertions.assertNotNull(pessoa);
     }
 
-    @Test
-    public void shouldFindAll() {
-        Pessoa pessoa = createPerson();
 
-        List<Pessoa> entities = given()
-                .auth()
-                .basic("user", "user")
-                .contentType(ContentType.JSON)
-                .when()
-                .get("/pessoas")
-                .then()
-                .statusCode(OK.getStatusCode())
-                .extract()
-                .as(new TypeRef<List<Pessoa>>() {
-                });
-
-        Assertions.assertFalse(entities.isEmpty());
-        Assertions.assertTrue(entities.stream().map(p -> p.nome)
-                .anyMatch(n -> n.equals(pessoa.nome)));
-
-    }
-
-    @Test
-    public void shouldFindOne() {
-        Pessoa pessoa = createPerson();
-        Pessoa entity = given()
-                .auth()
-                .basic("user", "user")
-                .contentType(ContentType.JSON)
-                .when()
-                .get("/pessoas/{id}", pessoa.id)
-                .then()
-                .statusCode(OK.getStatusCode())
-                .extract()
-                .as(Pessoa.class);
-        Assertions.assertEquals(pessoa, entity);
-    }
-
-    @Test
-    public void shouldDelete() {
-        Pessoa pessoa = createPerson();
-        given()
-                .auth()
-                .basic("user", "user")
-                .contentType(ContentType.JSON)
-                .when()
-                .delete("/pessoas/{id}", pessoa.id)
-                .then()
-                .statusCode(ACCEPTED.getStatusCode());
-
-        given()
-                .auth()
-                .basic("user", "user")
-                .contentType(ContentType.JSON)
-                .when()
-                .get("/pessoas/{id}", pessoa.id)
-                .then()
-                .statusCode(NOT_FOUND.getStatusCode());
-    }
-
-    @Test
-    public void shouldUpdate() {
-        Pessoa pessoa = createPerson();
-        pessoa.nome = faker.dragonBall().character();
-
-        Pessoa pessoaAtualizada = given()
-                .auth()
-                .basic("user", "user")
-                .contentType(ContentType.JSON)
-                .when()
-                .body(pessoa)
-                .put("/pessoas/{id}", pessoa.id)
-                .then()
-                .statusCode(ACCEPTED.getStatusCode())
-                .extract().as(Pessoa.class);
-        Assertions.assertEquals(pessoa, pessoaAtualizada);
-    }
-
-    private Pessoa createPerson() {
-        Pessoa pessoa = getPessoa();
-        return given()
-                .auth()
-                .basic("user", "user")
-                .contentType(ContentType.JSON)
-                .when()
-                .body(pessoa)
-                .post("/pessoas")
-                .then()
-                .statusCode(CREATED.getStatusCode())
-                .extract().as(Pessoa.class);
-    }
 
     private Pessoa getPessoa() {
         Pessoa pessoa = new Pessoa();
