@@ -4,6 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,4 +31,10 @@ public class CallService {
         repository.persist(calls);
         return calls.stream().map(CallDTO::of).collect(toList());
     }
+
+    @Transactional
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
 }
