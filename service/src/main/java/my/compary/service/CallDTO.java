@@ -86,4 +86,26 @@ public class CallDTO {
                 ", type=" + type +
                 '}';
     }
+
+    public static CallDTO of(Call call) {
+        Period period = call.getPeriod();
+        CallDTO dto = new CallDTO();
+        dto.setCalle(call.getCalle());
+        dto.setCaller(call.getCaller());
+        dto.setType(call.getType());
+        dto.setStart(period.getStart());
+        dto.setEnd(period.getEnd());
+        return dto;
+    }
+
+    public Call toEntity() {
+        Call call = new Call();
+        call.setCalle(this.calle);
+        call.setCaller(this.caller);
+        call.setType(this.type);
+        call.setPeriod(Period.of(this.start, this.end));
+        PulseDialing pulseDialing = new PulseDialing(call);
+        pulseDialing.pulse();
+        return call;
+    }
 }
