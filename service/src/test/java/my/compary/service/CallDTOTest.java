@@ -3,6 +3,7 @@ package my.compary.service;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,6 +19,7 @@ class CallDTOTest {
         LocalDateTime start = LocalDateTime.now();
         LocalDateTime end = start.plusMinutes(4);
         call.setPeriod(Period.of(start, end));
+        call.setCost(BigDecimal.ZERO);
 
         CallDTO dto = CallDTO.of(call);
         Assertions.assertNotNull(dto);
@@ -27,6 +29,7 @@ class CallDTOTest {
         Assertions.assertEquals(end, dto.getEnd());
         Assertions.assertEquals(call.getType(), dto.getType());
         Assertions.assertEquals(call.getId(), dto.getId());
+        Assertions.assertEquals(call.getCost(), dto.getCost());
     }
 
     @Test
@@ -47,6 +50,7 @@ class CallDTOTest {
         Assertions.assertEquals(dto.getStart(), start);
         Assertions.assertEquals(dto.getEnd(), end);
         Assertions.assertEquals(dto.getType(), call.getType());
+        Assertions.assertNotEquals(dto.getCost(), call.getCost());
     }
 
     @Test

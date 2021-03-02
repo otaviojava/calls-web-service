@@ -27,5 +27,8 @@ class CallServiceTest {
         dto.setEnd(end);
         List<CallDTO> dtos = callService.save(new CallsDTO(List.of(dto)));
         Assertions.assertTrue(dtos.stream().map(CallDTO::getId).allMatch(Objects::nonNull));
+        dto = dtos.get(0);
+        Assertions.assertNotNull(dto.getCost());
+
     }
 }
