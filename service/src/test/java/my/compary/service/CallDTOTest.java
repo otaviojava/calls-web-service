@@ -39,7 +39,13 @@ class CallDTOTest {
         dto.setStart(start);
         dto.setEnd(end);
 
-        dto.toEntity();
+        Call call = dto.toEntity();
+        Assertions.assertNotNull(call);
+        Assertions.assertEquals(dto.getCalle(), call.getCalle());
+        Assertions.assertEquals(dto.getCaller(), call.getCaller());
+        Assertions.assertEquals(dto.getStart(), start);
+        Assertions.assertEquals(dto.getEnd(), end);
+        Assertions.assertEquals(dto.getType(), call.getType());
 
     }
 }
