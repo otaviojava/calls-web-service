@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class PulseDialingTest {
 
     @Test
@@ -67,6 +65,4 @@ class PulseDialingTest {
         Assertions.assertEquals(0, pulse.compareTo(expectedValue));
         Assertions.assertEquals(0, call.getCost().compareTo(expectedValue));
     }
-
-
 }
