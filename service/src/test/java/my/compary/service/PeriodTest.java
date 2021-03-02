@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class PeriodTest {
 
     @Test
@@ -26,9 +24,10 @@ class PeriodTest {
         LocalDateTime end = LocalDateTime.now().plusMinutes(3);
         Period period = Period.of(start, end);
         Assertions.assertNotNull(period);
-        Assertions.assertEquals(start, period.start);
-        Assertions.assertEquals(end, period.end);
+        Assertions.assertEquals(start, period.getStart());
+        Assertions.assertEquals(end, period.getEnd());
     }
+
     @Test
     public void shouldReturnTheDifferenceMinutes() {
 
