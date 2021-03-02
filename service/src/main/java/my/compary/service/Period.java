@@ -22,6 +22,11 @@ public class Period {
     public Period() {
     }
 
+    private Period(LocalDateTime start, LocalDateTime end) {
+        this.start = start;
+        this.end = end;
+    }
+
     LocalDateTime getStart() {
         return start;
     }
@@ -42,9 +47,29 @@ public class Period {
         return Duration.between(start, end);
     }
 
-    private Period(LocalDateTime start, LocalDateTime end) {
-        this.start = start;
-        this.end = end;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Period period = (Period) o;
+        return Objects.equals(start, period.start) && Objects.equals(end, period.end);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, end);
+    }
+
+    @Override
+    public String toString() {
+        return "Period{" +
+                "start=" + start +
+                ", end=" + end +
+                '}';
     }
 
     public static Period of(LocalDateTime start, LocalDateTime end) {
