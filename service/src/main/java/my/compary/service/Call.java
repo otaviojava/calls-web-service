@@ -5,25 +5,80 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-public class Call extends PanacheEntity {
+public class Call {
 
+    @Id
+    @GeneratedValue
+    private Long id;
     @Column
     @NotBlank
-    public String caller;
+    private String caller;
     @Column
     @NotBlank
-    public String calle;
+    private String calle;
     @Column
-    public Period period;
+    private Period period;
     @Column
     @Enumerated
     @NotNull
-    public TypeCall type;
+    private TypeCall type;
+    @Column
+    @NotNull
+    private BigDecimal cost;
+
+    Long getId() {
+        return id;
+    }
+
+    void setId(Long id) {
+        this.id = id;
+    }
+
+    String getCaller() {
+        return caller;
+    }
+
+    void setCaller(String caller) {
+        this.caller = caller;
+    }
+
+    String getCalle() {
+        return calle;
+    }
+
+    void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    Period getPeriod() {
+        return period;
+    }
+
+    void setPeriod(Period period) {
+        this.period = period;
+    }
+
+    TypeCall getType() {
+        return type;
+    }
+
+    void setType(TypeCall type) {
+        this.type = type;
+    }
 
 
+    public BigDecimal getCost() {
+        return cost;
+    }
+
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
+    }
 }
