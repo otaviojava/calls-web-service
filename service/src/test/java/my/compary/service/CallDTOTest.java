@@ -26,6 +26,7 @@ class CallDTOTest {
         Assertions.assertEquals(start, dto.getStart());
         Assertions.assertEquals(end, dto.getEnd());
         Assertions.assertEquals(call.getType(), dto.getType());
+        Assertions.assertEquals(call.getId(), dto.getId());
     }
 
     @Test
@@ -46,6 +47,20 @@ class CallDTOTest {
         Assertions.assertEquals(dto.getStart(), start);
         Assertions.assertEquals(dto.getEnd(), end);
         Assertions.assertEquals(dto.getType(), call.getType());
+    }
 
+    @Test
+    public void shouldIgnoreId() {
+        LocalDateTime start = LocalDateTime.now();
+        LocalDateTime end = start.plusMinutes(4);
+        CallDTO dto = new CallDTO();
+        dto.setCalle("123");
+        dto.setCalle("321");
+        dto.setType(TypeCall.INBOUND);
+        dto.setStart(start);
+        dto.setEnd(end);
+
+        Call call = dto.toEntity();
+        Assertions.assertNull(call.getId());
     }
 }
