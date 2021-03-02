@@ -3,6 +3,7 @@ package my.compary.service;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -10,15 +11,35 @@ import java.util.Objects;
 public class Period {
 
     @Column
-    public LocalDateTime start;
+    private LocalDateTime start;
     @Column
-    public LocalDateTime end;
+    private LocalDateTime end;
 
     /**
      * Framework Only
      */
     @Deprecated
     public Period() {
+    }
+
+    LocalDateTime getStart() {
+        return start;
+    }
+
+    void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
+    LocalDateTime getEnd() {
+        return end;
+    }
+
+    void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
+    public Duration getCallDuration() {
+        return Duration.between(start, end);
     }
 
     private Period(LocalDateTime start, LocalDateTime end) {

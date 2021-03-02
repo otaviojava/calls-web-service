@@ -3,7 +3,9 @@ package my.compary.service;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalUnit;
 
 class PeriodTest {
 
@@ -30,8 +32,13 @@ class PeriodTest {
 
     @Test
     public void shouldReturnTheDifferenceMinutes() {
-
-
+        LocalDateTime start = LocalDateTime.now();
+        LocalDateTime end = LocalDateTime.now().plusMinutes(3);
+        Period period = Period.of(start, end);
+        Assertions.assertNotNull(period);
+        Duration duration = period.getCallDuration();
+        Assertions.assertNotNull(duration);
+        Assertions.assertEquals(3L, duration.toMinutes());
     }
 
 }
