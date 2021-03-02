@@ -71,12 +71,11 @@ public class Call {
         this.type = type;
     }
 
-
-    public BigDecimal getCost() {
+    BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(BigDecimal cost) {
+    void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 }
