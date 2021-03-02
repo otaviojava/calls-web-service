@@ -15,17 +15,17 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class CallController {
 
-    private final CallRepository repository;
+    private final CallService service;
 
     @Inject
-    public CallController(CallRepository repository) {
-        this.repository = repository;
+    public CallController(CallService service) {
+        this.service = service;
     }
 
     @GET
     @Path("/")
     @Produces(value = MediaType.APPLICATION_JSON)
     public List<CallDTO> findAll(@BeanParam CallFilter query) {
-        return null;
+        return service.query(query);
     }
 }
