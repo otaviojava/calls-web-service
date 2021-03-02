@@ -34,7 +34,7 @@ class CallDTOTest {
         LocalDateTime start = LocalDateTime.now();
         LocalDateTime end = start.plusMinutes(4);
         CallDTO dto = new CallDTO();
-        dto.setCalle("123");
+        dto.setCaller("123");
         dto.setCalle("321");
         dto.setType(TypeCall.INBOUND);
         dto.setStart(start);
@@ -54,7 +54,7 @@ class CallDTOTest {
         LocalDateTime start = LocalDateTime.now();
         LocalDateTime end = start.plusMinutes(4);
         CallDTO dto = new CallDTO();
-        dto.setCalle("123");
+        dto.setCaller("123");
         dto.setCalle("321");
         dto.setType(TypeCall.INBOUND);
         dto.setStart(start);
