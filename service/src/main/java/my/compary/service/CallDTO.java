@@ -2,6 +2,7 @@ package my.compary.service;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -9,20 +10,22 @@ public class CallDTO {
 
     private Long id;
 
-    @NotBlank(message="caller may not be blank")
+    @NotBlank(message = "caller may not be blank")
     private String caller;
 
-    @NotBlank(message="calle may not be blank")
+    @NotBlank(message = "calle may not be blank")
     private String calle;
 
-    @NotNull(message="start may not be blank")
+    @NotNull(message = "start may not be blank")
     private LocalDateTime start;
 
-    @NotNull(message="end may not be blank")
+    @NotNull(message = "end may not be blank")
     private LocalDateTime end;
 
-    @NotNull(message="type may not be blank")
+    @NotNull(message = "type may not be blank")
     private TypeCall type;
+
+    private BigDecimal cost;
 
     public Long getId() {
         return id;
@@ -72,26 +75,12 @@ public class CallDTO {
         this.type = type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CallDTO callDTO = (CallDTO) o;
-        return Objects.equals(id, callDTO.id)
-                && Objects.equals(caller, callDTO.caller)
-                && Objects.equals(calle, callDTO.calle)
-                && Objects.equals(start, callDTO.start)
-                && Objects.equals(end, callDTO.end)
-                && type == callDTO.type;
+    public BigDecimal getCost() {
+        return cost;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, caller, calle, start, end, type);
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
     }
 
     @Override
@@ -103,6 +92,7 @@ public class CallDTO {
                 ", start=" + start +
                 ", end=" + end +
                 ", type=" + type +
+                ", cost=" + cost +
                 '}';
     }
 
@@ -115,6 +105,7 @@ public class CallDTO {
         dto.setType(call.getType());
         dto.setStart(period.getStart());
         dto.setEnd(period.getEnd());
+        dto.setCost(call.getCost());
         return dto;
     }
 
