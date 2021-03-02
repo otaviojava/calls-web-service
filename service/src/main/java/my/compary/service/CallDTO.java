@@ -1,5 +1,7 @@
 package my.compary.service;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -7,14 +9,19 @@ public class CallDTO {
 
     private Long id;
 
+    @NotBlank(message="caller may not be blank")
     private String caller;
 
+    @NotBlank(message="calle may not be blank")
     private String calle;
 
+    @NotNull(message="start may not be blank")
     private LocalDateTime start;
 
+    @NotNull(message="end may not be blank")
     private LocalDateTime end;
 
+    @NotNull(message="type may not be blank")
     private TypeCall type;
 
     public Long getId() {
