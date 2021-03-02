@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 public class Call {
@@ -77,5 +78,34 @@ public class Call {
 
     void setCost(BigDecimal cost) {
         this.cost = cost;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Call call = (Call) o;
+        return Objects.equals(id, call.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Call{" +
+                "id=" + id +
+                ", caller='" + caller + '\'' +
+                ", calle='" + calle + '\'' +
+                ", period=" + period +
+                ", type=" + type +
+                ", cost=" + cost +
+                '}';
     }
 }
