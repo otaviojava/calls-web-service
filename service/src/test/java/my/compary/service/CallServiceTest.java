@@ -29,6 +29,5 @@ class CallServiceTest {
         Assertions.assertTrue(dtos.stream().map(CallDTO::getId).allMatch(Objects::nonNull));
         dto = dtos.get(0);
         Assertions.assertNotNull(dto.getCost());
-
     }
 }
