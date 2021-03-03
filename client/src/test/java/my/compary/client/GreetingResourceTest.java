@@ -1,4 +1,4 @@
-package com.temaula.rdb;
+package my.compary.client;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;

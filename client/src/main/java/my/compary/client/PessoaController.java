@@ -1,10 +1,8 @@
-package com.temaula.rdb;
+package my.compary.client;
 
 import io.quarkus.panache.common.Sort;
 
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
